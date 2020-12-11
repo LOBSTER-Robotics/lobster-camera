@@ -70,10 +70,10 @@ class Camera:
 
     def set_prop(self, prop, value, name):
         print("Changing property {}({}) from {} to {}".format(name, prop, self.cap.get(prop), value))
-        #  ret = self.cap.set(prop, value)
-        #  if not ret:
-            #  print("Could not set property {}".format(name))
-            #  print("It's now set to {}".format(self.cap.get(prop)))
+        ret = self.cap.set(prop, value)
+        if not ret:
+            print("Could not set property {}".format(name))
+            print("It's now set to {}".format(self.cap.get(prop)))
 
     def __init__(self, frame_width, frame_height, framerate, videocodec):
         camera_number = 0  # the location of the camera (/dev/video*)
@@ -82,8 +82,6 @@ class Camera:
             # this line shouldn't be reached because an exception is raised
             logging.info("Could not find camera in /dev/video%d" % camera_number)
             return
-        #  frame_width = int(cv2.CAP_PROP_FRAME_WIDTH)
-        #  frame_height = int(cv2.CAP_PROP_FRAME_HEIGHT)
         self.frame_width = frame_width
         self.frame_height = frame_height
         self.framerate = framerate
@@ -96,26 +94,6 @@ class Camera:
         self.set_prop(cv2.CAP_PROP_FRAME_WIDTH, frame_width, "frame width")
         self.set_prop(cv2.CAP_PROP_FRAME_HEIGHT, frame_height, "frame height")
         self.set_prop(cv2.CAP_PROP_FPS, framerate, "frame rate")
-        #  print("It's set to {}".format(self.cap.get(cv2.CAP_PROP_FOURCC)))
-        #  ret1 = self.cap.set(cv2.CAP_PROP_FOURCC, videocodec)
-        #  if ret1 == False:
-            #  print("Could not set video codec")
-            #  print("It's set to {}".format(self.cap.get(cv2.CAP_PROP_FOURCC)))
-
-        #  ret2 = self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
-        #  if ret2 == False:
-            #  print("Could not set frame height")
-            #  print("It's set to {}".format(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
-
-        #  ret3 = self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
-        #  if ret1 == False:
-            #  print("Could not set frame width")
-            #  print("It's set to {}".format(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)))
-
-        #  ret4 = self.cap.set(cv2.CAP_PROP_FPS, framerate)
-        #  if ret1 == False:
-            #  print("Could not set framerate")
-            #  print("It's set to {}".format(self.cap.get(cv2.CAP_PROP_FPS)))
 
         self.out = cv2.VideoWriter('outpy.avi', videocodec, framerate, (frame_width, frame_height))
 
