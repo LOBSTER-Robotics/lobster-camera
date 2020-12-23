@@ -2,9 +2,6 @@
 
 import cv2
 
-## required packages:
-# python3-h5py
-
 # print openCV version
 from Camera import Camera, CameraMode, VideoFormats
 
