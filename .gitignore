@@ -1,2 +1,5 @@
 __pycache__
 outpy.avi
+*.mjpeg
+*.mpjg
+*.mp4

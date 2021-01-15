@@ -10,18 +10,28 @@ function yes_or_no {
     done
 }
 
-v4l2-ctl -d0 -v width=1920,height=1080,pixelformat=MJPG
+CAMERA=0
 
-v4l2-ctl -d0 -V
+while getopts 'hd:' c
+do
+	case $c in
+		h) usage; exit ;;
+		d) CAMERA="$OPTARG"; echo "Setting camera device to $CAMERA" ;;
+	esac
+done
+
+v4l2-ctl -d"$CAMERA" -v width=1920,height=1080,pixelformat=MJPG
+
+v4l2-ctl -d"$CAMERA" -V
 
 echo "Is this good?"
 
 yes_or_no || exit 1
 
-v4l2-ctl -d0 --stream-count 1000 --stream-mmap --stream-to file.mjpeg
+v4l2-ctl -d"$CAMERA" --stream-user --stream-to file.mjpeg
 
 echo "Convert with ffmpeg?"
 
 yes_or_no || exit 1
 
-ffmpeg -i file.mjpeg file.mp4
+ffmpeg -r 60 -f mjpeg -i file.mjpeg file.mp4
