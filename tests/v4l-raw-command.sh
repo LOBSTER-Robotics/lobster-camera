@@ -20,12 +20,12 @@ do
 	esac
 done
 
-# hoogste resolutie: 2304x1536 -- MJPG -- 48 fps
-v4l2-ctl -d"$CAMERA" -v width=1920,height=1080,pixelformat=MJPG
+# Hoogste resolutie: 2304x1536 -- UYVY -- 8 fps
+v4l2-ctl -d"$CAMERA" -v width=1920,height=1080,pixelformat=UYVY
 
 v4l2-ctl -d"$CAMERA" -V
 
-v4l2-ctl -d"$CAMERA" -list-frameintervals width=1920,height=1080,pixelformat=MJPG
+v4l2-ctl -d"$CAMERA" -list-frameintervals width=1920,height=1080,pixelformat=UYVY
 
 echo "Is this good?"
 
@@ -37,4 +37,4 @@ echo "Convert with ffmpeg?"
 
 yes_or_no || exit 1
 
-ffmpeg -r 60 -f mjpeg -i file.mjpeg file.mp4
+ffmpeg -r 8 -f mjpeg -i file.mjpeg file.mp4
