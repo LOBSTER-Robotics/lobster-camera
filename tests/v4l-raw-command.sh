@@ -25,16 +25,18 @@ v4l2-ctl -d"$CAMERA" -v width=1920,height=1080,pixelformat=UYVY
 
 v4l2-ctl -d"$CAMERA" -V
 
-v4l2-ctl -d"$CAMERA" -list-frameintervals width=1920,height=1080,pixelformat=UYVY
+v4l2-ctl -d"$CAMERA" --list-frameintervals width=1920,height=1080,pixelformat=UYVY
 
 echo "Is this good?"
 
 yes_or_no || exit 1
 
-v4l2-ctl -d"$CAMERA" --stream-user --stream-to file.mjpeg
+# v4l2-ctl -d"$CAMERA" --stream-user --stream-to file.raw
+
+v4l2-ctl -d"$CAMERA" --stream-count 300 --stream-user --stream-to file.raw
 
 echo "Convert with ffmpeg?"
 
 yes_or_no || exit 1
 
-ffmpeg -r 8 -f mjpeg -i file.mjpeg file.mp4
+ffmpeg -r 15 -pix_fmt uyvy422 -f rawvideo -s 1920x1080 -i file.raw file.mp4

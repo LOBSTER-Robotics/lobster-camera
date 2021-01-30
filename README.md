@@ -23,3 +23,6 @@ You can now test if it works by running `tests/v4l2-command.sh` or
 - [ ] testen op de Pi
 - [ ] Set persistent configuration with udev.
 - [ ] Stream video over the internet
+
+# Notes
+https://linuxtv.org/wiki/index.php/V4L_capturing#Recommended_process
