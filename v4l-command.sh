@@ -25,6 +25,7 @@ function convert_and_quit {
         else
                 ffmpeg -r $FPS -f mjpeg -i "$FILE_ARG" "$CONVERT_OUTPUT"
         fi
+        exit 0
 }
 
 INTERACTIVE=0
@@ -54,7 +55,7 @@ do
 		h) usage; exit ;;
 		d) CAMERA="$OPTARG"; echo "Setting camera device to $CAMERA" ;;
 		l) LIST_AND_QUIT=1 ;;
-		r) USE_RAW=1; FPS=15; PIXELFORMAT=UYVY ;;
+		r) USE_RAW=1; FPS=60; PIXELFORMAT=UYVY ;;
 		f) FILE_ARG="$OPTARG" ;;
 		c) CONVERT=1; CONVERT_OUTPUT="$OPTARG" ;;
                 i) INTERACTIVE=1 ;;
@@ -62,7 +63,7 @@ do
 done
 
 # hoogste resolutie: 2304x1536 -- MJPG -- 48 fps
-WIDTH_HEIGHT_PF="width=1920,heigh=1080,pixelformat=$PIXELFORMAT"
+WIDTH_HEIGHT_PF="width=1920,height=1080,pixelformat=$PIXELFORMAT"
 
 if [ $CONVERT == 1 ]
 then
