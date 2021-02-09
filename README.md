@@ -26,3 +26,15 @@ You can now test if it works by running `tests/v4l2-command.sh` or
 
 # Notes
 https://linuxtv.org/wiki/index.php/V4L_capturing#Recommended_process
+
+Storage troughput needed for
+- Raw 2304x1536 (24 fps):
+  140 - 170 MB / s
+- Mjpeg 2304x1536 (48 fps)
+  26 - 28 MB / s
+
+For a 1 hour clip that means
+- Raw 2304x1536 (24 fps):
+  600 GB of storage
+- Mjpeg 2304x1536 (48 fps)
+  100 GB of storage

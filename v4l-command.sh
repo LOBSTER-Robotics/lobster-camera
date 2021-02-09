@@ -12,16 +12,27 @@ function usage {
 
 }
 
-FPS=60
 USE_RAW=0
 FILE_ARG=""
 CONVERT_OUTPUT=""
+
+# Max resolution
+WIDTH=2304
+HEIGHT=1536
+FPS=48
+RAW_FPS=24
+
+# Max fps
+# WIDTH=1920
+# HEIGHT=1080
+# FPS=60
+# RAW_FPS=60
 
 function convert_and_quit {
         echo "converting with ffmpeg"
         if [ $USE_RAW == 1 ]
         then
-                ffmpeg -r $FPS -pix_fmt uyvy422 -f rawvideo -s 1920x1080 -i "$FILE_ARG" "$CONVERT_OUTPUT"
+                ffmpeg -r $RAW_FPS -pix_fmt uyvy422 -f rawvideo -s "${WIDTH}x${HEIGHT}" -i "$FILE_ARG" "$CONVERT_OUTPUT"
         else
                 ffmpeg -r $FPS -f mjpeg -i "$FILE_ARG" "$CONVERT_OUTPUT"
         fi
@@ -63,7 +74,7 @@ do
 done
 
 # hoogste resolutie: 2304x1536 -- MJPG -- 48 fps
-WIDTH_HEIGHT_PF="width=1920,height=1080,pixelformat=$PIXELFORMAT"
+WIDTH_HEIGHT_PF="width=${WIDTH},height=${HEIGHT},pixelformat=$PIXELFORMAT"
 
 if [ $CONVERT == 1 ]
 then
