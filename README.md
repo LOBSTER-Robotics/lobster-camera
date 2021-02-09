@@ -11,16 +11,18 @@ usb 3.0 v4l2 camera.
 
 You will also need a POSIX shell
 
-You can now test if it works by running `tests/v4l2-command.sh` or
-`tests/v4l2-raw-command.sh`.
+You can now test if it works by running `v4l2-command.sh -d0 -f /tmp/file.mjpeg`.
+Change `-d0` to any camera number you want to use from `/dev/video*`.
+
+Convert the mjpeg file to mp4 by running `v4l2-command.sh -f /tmp/file.mjpeg -c /tmp/file.mp4`.
 
 # TODO
 
-- [ ] Raw footage gekregen
+- [x] Raw footage gekregen
+- [x] getest of croppen op de Pi. (werkt niet)
+- [x] testen op de Pi. (Werkt, opslag is niet snel genoeg. Ram wel)
 - [ ] interface in python gemaakt
 - [ ] logisch opslaan op de Pi
-- [ ] getest of croppen op de Pi.
-- [ ] testen op de Pi
 - [ ] Set persistent configuration with udev.
 - [ ] Stream video over the internet
 
