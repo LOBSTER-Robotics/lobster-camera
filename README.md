@@ -21,8 +21,8 @@ Convert the mjpeg file to mp4 by running `v4l2-command.sh -f /tmp/file.mjpeg -c 
 - [x] Raw footage gekregen
 - [x] getest of croppen op de Pi. (werkt niet)
 - [x] testen op de Pi. (Werkt, opslag is niet snel genoeg. Ram wel)
-- [ ] interface in python gemaakt
-- [ ] logisch opslaan op de Pi
+- [x] interface in python gemaakt
+- [x] logisch opslaan op de Pi
 - [ ] Set persistent configuration with udev.
 - [ ] Stream video over the internet
 
