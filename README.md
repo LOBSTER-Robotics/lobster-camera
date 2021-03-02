@@ -40,3 +40,20 @@ For a 1 hour clip that means
   600 GB of storage
 - Mjpeg 2304x1536 (48 fps)
   100 GB of storage
+
+## Settting up the USB stick
+
+Set up an ext4 filesystem on the usb stick
+```
+sudo umount /dev/...
+sudo mkfs.ext4 /dev/sda1
+sudo e2label /dev/sda1 "Video_storage"
+```
+
+Make sure the usb is automounted in the right place by appending the following
+to `/etc/fstab`:
+```
+LABEL=Video_storage	/mnt/Video         	ext4      	defaults	0 0
+```
+The usb's durability could be slightly improved by specifying `noatime` instead
+of `defaults`.
