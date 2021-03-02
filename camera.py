@@ -24,8 +24,8 @@ class Camera:
 
     def start_recording(self):
         self.filename = get_timestamped_filename("mjpeg"); # TODO change this to raw when recording raw footage
-        file_location = os.path.join(self.directory, self.filename);
-        print ("Saving file to {}".format(file_location))
+        self.file_location = os.path.join(self.directory, self.filename);
+        print ("Saving file to {}".format(self.file_location))
         os.makedirs(self.directory, exist_ok=True) # create the recordings directory and all directories above it
 
         # start the recording process
@@ -41,7 +41,7 @@ class Camera:
         self.process.wait()
 
     def get_file_location(self):
-        return file_location
+        return self.file_location
 
 
 c = Camera(2304, 1536, "MJPG")
@@ -49,3 +49,4 @@ c.start_recording()
 print("recording")
 time.sleep(10)
 c.stop_recording()
+print("done")
