@@ -43,17 +43,33 @@ For a 1 hour clip that means
 
 ## Settting up the USB stick
 
-Set up an ext4 filesystem on the usb stick
+This can be done on the raspberry pi, or any other linux system.
+
+### Set up an ext4 filesystem
+
 ```
 sudo umount /dev/...
 sudo mkfs.ext4 /dev/sda1
 sudo e2label /dev/sda1 "Video_storage"
 ```
 
-Make sure the usb is automounted in the right place by appending the following
+### Set up a fstab (optional)
+
+Setting an fstab is not necessary, since the raspberry pi automounts the USB to
+`/media/pi/Video_storage`.
+If you want to make changes to the defaults, however making a fstab file is
+useful. To make sure the usb is automounted in `/mnt/Video`, append the
+following:
 to `/etc/fstab`:
 ```
 LABEL=Video_storage	/mnt/Video         	ext4      	defaults	0 0
 ```
 The usb's durability could be slightly improved by specifying `noatime` instead
 of `defaults`.
+
+### Make a recordings directory owned by the pi user
+```
+cd /media/pi/Video_storage
+sudo mkidr recordings # this exact name, since it's used in camera.py
+sudo chown pi:pi recordings
+```
