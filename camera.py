@@ -25,10 +25,11 @@ class Camera:
     def start_recording(self):
         self.filename = get_timestamped_filename("mjpeg"); # TODO change this to raw when recording raw footage
         file_location = os.path.join(self.directory, self.filename);
+        print ("Saving file to {}".format(file_location))
         os.makedirs(self.directory, exist_ok=True) # create the recordings directory and all directories above it
 
         # start the recording process
-        self.process = subprocess.Popen(["v4l2-ctl", "-d", self.camera_device, "--stream-user", "--stream-to", self.filename],
+        self.process = subprocess.Popen(["v4l2-ctl", "-d", self.camera_device, "--stream-user", "--stream-to", self.file_location],
                 shell = False
                 )
 
