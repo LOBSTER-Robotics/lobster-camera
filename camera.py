@@ -5,7 +5,7 @@ import os
 import logging
 
 def get_timestamped_filename(extension):
-    timestr = time.strftime("%d-%m-%Y_%H:%M:%S")
+    timestr = time.strftime("%d-%m-%Y_%H-%M-%S")
     filename = timestr + "." + extension
     return filename
 
@@ -34,7 +34,7 @@ class Camera:
                 )
 
     def is_recording(self):
-        return not p.poll()
+        return not self.process.poll()
 
     def stop_recording(self):
         self.process.terminate()
@@ -45,8 +45,9 @@ class Camera:
 
 
 c = Camera(2304, 1536, "MJPG")
-c.start_recording()
-print("recording")
-time.sleep(10)
-c.stop_recording()
+while True:
+    c.start_recording()
+    time.sleep(1000)
+    print("restarting")
+    c.stop_recording()
 print("done")
