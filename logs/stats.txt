@@ -1,0 +1,23 @@
+1280x720.log
+Dropped buffers >= 2
+Failed buffers = 0
+
+1280x960.log
+Dropped buffers >= 4
+Failed buffers = 0
+
+1920x1280.log
+Dropped buffers >= 32
+Failed buffers = 140
+
+2304x1296.log
+Dropped buffers >= 31
+Failed buffers = 1382
+
+2304x1536.log
+Dropped buffers >= 22
+Failed buffers = 1468
+
+640x480.log
+Dropped buffers >= 1
+Failed buffers = 0
