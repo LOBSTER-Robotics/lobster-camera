@@ -1,3 +1,11 @@
+These are the stats from trying each resolution once for 100 seconds.
+Dropped buffers mean a frame is skipped this is recoverable. Failed buffers mean
+the frame size is different from expected and this is only recoverable on
+restart.
+
+Lower resolutions result in fewer dropped buffers, but it's very rare to record
+100 seconds without dropping at least 1 buffer
+
 1280x720.log
 Dropped buffers >= 2
 Failed buffers = 0
